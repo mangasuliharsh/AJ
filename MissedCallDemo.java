@@ -36,6 +36,8 @@ public class MissedCallDemo {
                         if (!found)
                             System.out.println("unknown: " + mc.number + ": " + mc.date);
                     }
+                    if(missed.isEmpty())
+                    	System.out.println("Call List is Empty");
                     break;
 
                 case 3:
