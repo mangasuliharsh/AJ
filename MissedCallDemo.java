@@ -25,7 +25,6 @@ public class MissedCallDemo {
                     break;
 
                 case 2:
-                    System.out.println("Contact List \n");
                     for (MissedCall mc : missed) {
                         boolean found = false;
                         for (Contact c : contact) {
