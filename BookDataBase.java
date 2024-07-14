@@ -29,13 +29,13 @@ public class BookDatabaseApp {
         Scanner scanner = new Scanner(System.in);
         int nextId = 1;
 
-        // Add some books to the database
+        
         books.add(new Book(nextId++, "The Catcher in the Rye", "J.D. Salinger", "Little, Brown and Company", 299.99));
         books.add(new Book(nextId++, "To Kill a Mockingbird", "Harper Lee", "J.B. Lippincott & Co.", 199.99));
         books.add(new Book(nextId++, "1984", "George Orwell", "Secker & Warburg", 249.99));
         books.add(new Book(nextId++, "Pride and Prejudice", "Jane Austen", "T. Egerton", 159.99));
 
-        // Sort books by price and display them
+        
         List<Book> sortedBooks = new ArrayList<>(books);
         sortedBooks.sort(Comparator.comparingDouble(book -> book.price));
         System.out.println("Books sorted by price:");
@@ -43,7 +43,7 @@ public class BookDatabaseApp {
             System.out.println(book);
         }
 
-        // Prompt for an author name and display books by that author
+        
         System.out.print("\nEnter author name to search: ");
         String author = scanner.nextLine();
         List<Book> authorBooks = new ArrayList<>();
@@ -57,7 +57,7 @@ public class BookDatabaseApp {
             System.out.println(book);
         }
 
-        // Prompt for a price and display books with price greater than the specified price
+        
         System.out.print("\nEnter price to filter books: ");
         double price = scanner.nextDouble();
         List<Book> expensiveBooks = new ArrayList<>();
