@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class StudentInfoApp extends JFrame implements ActionListener {
 
-	private JTextField nameField, usnField, ageField, addressField, sgpa1Field, sgpa2Field, sgpa3Field, sgpa4Field, categoryField;
+    private JTextField nameField, usnField, ageField, addressField, sgpa1Field, sgpa2Field, sgpa3Field, sgpa4Field, categoryField;
     private JButton computeButton, doneButton, displayButton;
     private JTextArea displayArea;
     private ArrayList<String> studentCollection;
