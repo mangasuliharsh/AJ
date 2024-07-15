@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,17 +20,22 @@ public class CustomerPurchaseApp extends JFrame implements ActionListener {
         setTitle("Customer Purchase App");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(10, 2));
+        setLayout(new BorderLayout());
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(11, 2, 10, 10));
+        add(mainPanel, BorderLayout.CENTER);
 
         usernameField = new JTextField(20);
         passwordField = new JPasswordField(20);
         loginButton = new JButton("Login");
 
-        add(new JLabel("Username:"));
-        add(usernameField);
-        add(new JLabel("Password:"));
-        add(passwordField);
-        add(loginButton);
+        mainPanel.add(new JLabel("Username:"));
+        mainPanel.add(usernameField);
+        mainPanel.add(new JLabel("Password:"));
+        mainPanel.add(passwordField);
+        mainPanel.add(new JLabel("")); // Empty label for padding
+        mainPanel.add(loginButton);
 
         customerIdField = new JTextField(20);
         mobileField = new JTextField(20);
@@ -42,20 +48,24 @@ public class CustomerPurchaseApp extends JFrame implements ActionListener {
         itemDetailsArea.setEditable(false);
         discountComboBox = new JComboBox<>(new String[]{"No Discount", "10% Discount", "20% Discount"});
 
-        add(new JLabel("Customer ID:"));
-        add(customerIdField);
-        add(new JLabel("Mobile Number:"));
-        add(mobileField);
-        add(checkCustomerButton);
-        add(new JLabel("Item ID:"));
-        add(itemIdField);
-        add(new JLabel("Quantity:"));
-        add(quantityField);
-        add(addItemButton);
-        add(new JLabel("Discount:"));
-        add(discountComboBox);
-        add(printButton);
-        add(new JScrollPane(itemDetailsArea));
+        mainPanel.add(new JLabel("Customer ID:"));
+        mainPanel.add(customerIdField);
+        mainPanel.add(new JLabel("Mobile Number:"));
+        mainPanel.add(mobileField);
+        mainPanel.add(new JLabel("")); // Empty label for padding
+        mainPanel.add(checkCustomerButton);
+        mainPanel.add(new JLabel("Item ID:"));
+        mainPanel.add(itemIdField);
+        mainPanel.add(new JLabel("Quantity:"));
+        mainPanel.add(quantityField);
+        mainPanel.add(new JLabel("")); // Empty label for padding
+        mainPanel.add(addItemButton);
+        mainPanel.add(new JLabel("Discount:"));
+        mainPanel.add(discountComboBox);
+        mainPanel.add(new JLabel("")); // Empty label for padding
+        mainPanel.add(printButton);
+        mainPanel.add(new JLabel("Item Details:"));
+        mainPanel.add(new JScrollPane(itemDetailsArea));
 
         loginButton.addActionListener(this);
         checkCustomerButton.addActionListener(this);
