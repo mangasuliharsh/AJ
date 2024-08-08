@@ -5,131 +5,114 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class StudentInfoApp extends JFrame implements ActionListener {
-
-    private JTextField nameField, usnField, ageField, addressField, sgpa1Field, sgpa2Field, sgpa3Field, sgpa4Field, categoryField;
-    private JButton computeButton, doneButton, displayButton;
-    private JTextArea displayArea;
-    private ArrayList<String> studentCollection;
-
-    public StudentInfoApp() {
-
-    	setTitle("Student Information App");
-        setSize(600, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(12, 2));
-
-
-        nameField = new JTextField(20);
-        usnField = new JTextField(20);
-        ageField = new JTextField(20);
-        addressField = new JTextField(20);
-        sgpa1Field = new JTextField(20);
-        sgpa2Field = new JTextField(20);
-        sgpa3Field = new JTextField(20);
-        sgpa4Field = new JTextField(20);
-        categoryField = new JTextField(20);
-
-        computeButton = new JButton("Compute");
-        doneButton = new JButton("Done");
-        displayButton = new JButton("Display");
-
-        displayArea = new JTextArea(10, 50);
-        displayArea.setEditable(false);
-
-
-        add(new JLabel("Name:"));
-        add(nameField);
-        add(new JLabel("USN:"));
-        add(usnField);
-        add(new JLabel("Age:"));
-        add(ageField);
-        add(new JLabel("Address:"));
-        add(addressField);
-        add(new JLabel("SGPA Semester 1:"));
-        add(sgpa1Field);
-        add(new JLabel("SGPA Semester 2:"));
-        add(sgpa2Field);
-        add(new JLabel("SGPA Semester 3:"));
-        add(sgpa3Field);
-        add(new JLabel("SGPA Semester 4:"));
-        add(sgpa4Field);
-        add(new JLabel("Category:"));
-        add(categoryField);
-        add(computeButton);
-        add(doneButton);
-        add(displayButton);
-        add(new JScrollPane(displayArea));
-
-
-        computeButton.addActionListener(this);
-        doneButton.addActionListener(this);
-        displayButton.addActionListener(this);
-
-
-        studentCollection = new ArrayList<>();
-
-        setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == computeButton) {
-            try {
-                float sgpa1 = Float.parseFloat(sgpa1Field.getText());
-                float sgpa2 = Float.parseFloat(sgpa2Field.getText());
-                float sgpa3 = Float.parseFloat(sgpa3Field.getText());
-                float sgpa4 = Float.parseFloat(sgpa4Field.getText());
-
-
-                float cgpa = (sgpa1 + sgpa2 + sgpa3 + sgpa4) / 4;
-                JOptionPane.showMessageDialog(this, "Computed CGPA: " + cgpa, "Result", JOptionPane.INFORMATION_MESSAGE);
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Invalid number format.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getSource() == doneButton) {
-            try {
-                String name = nameField.getText();
-                String usn = usnField.getText();
-                int age = Integer.parseInt(ageField.getText());
-                String address = addressField.getText();
-                float sgpa1 = Float.parseFloat(sgpa1Field.getText());
-                float sgpa2 = Float.parseFloat(sgpa2Field.getText());
-                float sgpa3 = Float.parseFloat(sgpa3Field.getText());
-                float sgpa4 = Float.parseFloat(sgpa4Field.getText());
-                String category = categoryField.getText();
-
-
-                if (name.isEmpty() || usn.isEmpty() || address.isEmpty() || category.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "All fields must be filled out.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                if (age <= 0) {
-                    JOptionPane.showMessageDialog(this, "Age must be a positive number.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-
-                String studentDetails = String.format("Name: %s, USN: %s, Age: %d, Address: %s, SGPA1: %.2f, SGPA2: %.2f, SGPA3: %.2f, SGPA4: %.2f, Category: %s",
-                        name, usn, age, address, sgpa1, sgpa2, sgpa3, sgpa4, category);
-                studentCollection.add(studentDetails);
-                JOptionPane.showMessageDialog(this, "Student details stored.", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Invalid number format.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getSource() == displayButton) {
-
-        	StringBuilder allDetails = new StringBuilder();
-            for (String details : studentCollection) {
-                allDetails.append(details).append("\n");
-            }
-            displayArea.setText(allDetails.toString());
-        }
-    }
-
-    public static void main(String[] args) {
-        new StudentInfoApp();
-    }
+public class StudentCGPA extends JFrame implements ActionListener {
+	JTextField namef,usnf,addf,sg1f,sg2f,sg3f,sg4f;
+	JButton computeb,displayb,doneb;
+	JTextArea displayA;
+	ArrayList<String> studentCollection;
+	
+	StudentCGPA(){
+		setTitle("Student Details");
+		setSize(600,600);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(new GridLayout(12,2));
+		
+		namef = new JTextField(20);
+		usnf = new JTextField(20);
+		addf = new JTextField(20);
+		sg1f = new JTextField(20);
+		sg2f = new JTextField(20);
+		sg3f = new JTextField(20);
+		sg4f = new JTextField(20);
+		
+		computeb = new JButton("Compute");
+		doneb = new JButton("Done");
+		displayb = new JButton("Display");
+		
+		displayA = new JTextArea(10,50);
+		displayA.setEditable(false);
+		
+		add(new JLabel("Name: "));
+		add(namef);
+		add(new JLabel("USN: "));
+		add(usnf);
+		add(new JLabel("Address: "));
+		add(addf);
+		add(new JLabel("SGPA 1: "));
+		add(sg1f);
+		add(new JLabel("SGPA 2: "));
+		add(sg2f);
+		add(new JLabel("SGPA 3: "));
+		add(sg3f);
+		add(new JLabel("SGPA 4: "));
+		add(sg4f);
+		add(computeb);
+		add(doneb);
+		add(displayb);
+		
+		add(new JScrollPane(displayA));
+		
+		computeb.addActionListener(this);
+		doneb.addActionListener(this);
+		displayb.addActionListener(this);
+		
+		studentCollection = new ArrayList <String>();
+		
+		setVisible(true);
+		
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == computeb) {
+			try {
+				float sg1 = Float.parseFloat(sg1f.getText());
+				float sg2 = Float.parseFloat(sg2f.getText());
+				float sg3 = Float.parseFloat(sg3f.getText());
+				float sg4 = Float.parseFloat(sg4f.getText());
+				
+				float cgpa = (sg1+sg2+sg3+sg4) / 4;
+				
+				if (sg1 > 10 || sg2 > 10 || sg3 > 10 || sg4 > 10) {
+					JOptionPane.showMessageDialog(this,"SGPA should be less than 10","Error",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				JOptionPane.showMessageDialog(this,"CGPA ->> " + cgpa,"Result",JOptionPane.INFORMATION_MESSAGE);
+			}
+			catch (NumberFormatException n) {
+				JOptionPane.showMessageDialog(this,"Invalid NumberFormat","Error",JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		if (e.getSource() == doneb) {
+			try {
+				String name = namef.getText();
+				String usn = usnf.getText();
+				String addr = addf.getText();
+				float sg1 = Float.parseFloat(sg1f.getText());
+				float sg2 = Float.parseFloat(sg2f.getText());
+				float sg3 = Float.parseFloat(sg3f.getText());
+				float sg4 = Float.parseFloat(sg4f.getText());
+				
+				if (name.isEmpty() || usn.isEmpty() || addr.isEmpty()) {
+					JOptionPane.showMessageDialog(this,"All Fields Required","Error",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				String alldetails = String.format("Name: %s,USN: %s,Address: %s,SGPA 1: %.2f,SGPA 2: %.2f,SGPA 3: %.2f,SGPA 4: %.2f",name,usn,addr,sg1,sg2,sg3,sg4);
+				studentCollection.add(alldetails);
+				JOptionPane.showMessageDialog(this,"All Details Stored Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+			}
+			catch (NumberFormatException n) {
+				JOptionPane.showMessageDialog(this,"Invalid NumberFormat","Error",JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		if (e.getSource() == displayb) {
+			StringBuilder details = new StringBuilder();
+			for (String sd: studentCollection) {
+				details.append(sd).append("\n");
+				displayA.setText(details.toString());
+			}
+		}
+	}
+	public static void main(String[] args) {
+		new StudentCGPA();
+	}
 }
